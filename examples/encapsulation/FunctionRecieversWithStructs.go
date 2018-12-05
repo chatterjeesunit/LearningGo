@@ -54,6 +54,8 @@ func (this Circle) Overlaps(other Circle) bool {
 	return distanceBetweenCenters < float64(this.radius+other.radius)
 }
 
+// Circle is passed to reciever as a pointer
+// Ideally this should be the way we define recievers, otherwise entire objects are passed as copy to reciever functions.
 func (this *Circle) ChangeRadius(radius int) {
 	this.radius = radius
 }
