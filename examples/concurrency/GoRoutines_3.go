@@ -24,6 +24,6 @@ func main() {
 }
 
 func dummyPrintAgain(wg *sync.WaitGroup) {
+	defer wg.Done()
 	fmt.Println("Hello World")
-	wg.Done()
 }
