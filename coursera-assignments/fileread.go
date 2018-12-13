@@ -16,7 +16,7 @@ func main() {
 
 	scanner := bufio.NewScanner(os.Stdin)
 
-	fmt.Print("Please enter a file name: ")
+	fmt.Print("Please enter a file number: ")
 
 	var fileName string
 	if scanner.Scan() {

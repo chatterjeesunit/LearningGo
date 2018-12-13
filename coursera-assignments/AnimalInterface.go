@@ -99,7 +99,7 @@ func main() {
 			if ok {
 				queryAnimalAction(arg3, animal)
 			}else {
-				fmt.Println("Animal with this name does not exists. Please create a new animal first")
+				fmt.Println("Animal with this number does not exists. Please create a new animal first")
 			}
 		default:
 			fmt.Println("Invalid choice. Please try again.")

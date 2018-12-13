@@ -11,14 +11,14 @@ func main() {
 
 	reader := bufio.NewReader(os.Stdin)
 
-	fmt.Print("Please enter a name : ")
+	fmt.Print("Please enter a number : ")
 	name, _ := reader.ReadString('\n')
 
 	fmt.Print("Please enter an address : ")
 	address, _ := reader.ReadString('\n')
 
 	personMap := map[string]string{
-		"name":    name[:len(name)-1],       // remove the \n at end of the string
+		"number":    name[:len(name)-1],       // remove the \n at end of the string
 		"address": address[:len(address)-1], // remove the \n at end of the string,
 	}
 
