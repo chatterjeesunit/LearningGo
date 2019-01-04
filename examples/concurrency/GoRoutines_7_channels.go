@@ -42,7 +42,7 @@ func channelConsumer(channel chan int, n int, wg *sync.WaitGroup) {
 		//fmt.Printf("\tRecieved from channel : %d \n", i)
 		counter += 2
 		if counter >= n {
-			close(channel)
+			close(channel)  //TODO: Wrong.. Receiver should not close the channel.
 		}
 	}
 	fmt.Printf("Sum of first %d integers = %d \n", n, sum)

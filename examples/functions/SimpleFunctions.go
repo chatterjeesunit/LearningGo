@@ -38,8 +38,8 @@ func helloX(name string) {
 }
 
 //More than 1 arguments
-func add(x, y int) {
-	fmt.Printf("Sum = %d\n", x + y )
+func add(x, y int) int {
+	return x + y
 }
 
 func printValues(a, b int, c string, d bool) {
