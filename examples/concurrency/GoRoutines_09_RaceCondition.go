@@ -25,14 +25,22 @@ import (
 // but everytime the actual value will be different
 
 
+const (
+	MAX = 100000
+)
+
 func main() {
+
 
 	num := 100
 
 	var wg sync.WaitGroup
 
-	wg.Add(20000)
-	for i:=0; i<10000; i++ {
+	wg.Add(2 * MAX)
+
+	startTime := time.Now()
+
+	for i:=0; i<MAX; i++ {
 
 
 		go func() {
@@ -49,7 +57,11 @@ func main() {
 
 	wg.Wait()
 
+	fmt.Println("Total time taken : ", time.Since(startTime))
 	fmt.Println("Expected value = 100, Actual Value = ", num)
+
+
+
 
 }
 
