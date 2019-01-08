@@ -15,9 +15,10 @@ Simulate a single round of Ping Pong between two teams of players..
 Team 1 : Player 1
 Team 2 : Player 1
 Team 1 : Player 2
-Team 2 : Player 1
+Team 2 : Player 2
 
-4. Each player sleeps for a random time interval when they play (upto a max of 250 ms) - to simulate time taken by a player to play.
+4. Each player sleeps for a random time interval when they play (upto a max of 750 ms)
+- to simulate time taken by a player to play.
 
 5. Print each player's name and the time taken to play (the random sleep time)
 
@@ -25,7 +26,7 @@ Team 2 : Player 1
 
 7. Make use of channel to make sure each player and team plays as per their turn.
 
-8. If any player takes more than 200 ms to play his shot, then that player and team loses the game and game is finished
+8. If any player takes more than 500 ms to play his shot, then that player and team loses the game and game is finished
 
 9. After a game is finished, print the name of the team that has won the game.
 */

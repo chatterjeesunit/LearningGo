@@ -91,6 +91,7 @@ func produce(name string, n int) {
 		number := rand.Intn(500)
 		items <- number
 		fmt.Printf("%s : %d, [Queue Size = %d]\n", name, number, len(items))
+		//fmt.Printf("%s : %d\n", name, number)
 		sleepForRandomTime()
 	}
 
@@ -102,6 +103,7 @@ func consume(name string) {
 	rand.Seed(time.Now().UnixNano())
 	for item := range items {
 		fmt.Printf("\t\t\t\t\t\t\t\t\t%s: %d, [Queue Size = %d]\n", name, item, len(items))
+		//fmt.Printf("\t\t\t\t\t\t\t\t\t%s: %d\n", name, item)
 		sleepForRandomTime()
 	}
 

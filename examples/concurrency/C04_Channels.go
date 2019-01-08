@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-// using select with channels
+// using channels
 
 func main() {
 
@@ -17,6 +17,12 @@ func main() {
 	go printMessage("Hello World.", c)
 	go printMessage("Welcome to Go!", c)
 	go printMessage("Wow... channels are cool..", c)
+
+	//close(c)
+	//for msg:= range c {
+	//	fmt.Println(msg)
+	//}
+	//
 
 	for i := 0; i < 3; i++ {
 		msg := <-c
