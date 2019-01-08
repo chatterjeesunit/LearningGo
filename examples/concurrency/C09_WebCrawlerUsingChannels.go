@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"sync"			// for sync.Mutex
-	"sync/atomic"  	// For atomic counters
+	"sync"        // for sync.Mutex
+	"sync/atomic" // For atomic counters
 	"time"
 )
 
@@ -30,7 +30,6 @@ func (m *SafeHashSet) add(newUrl string) bool {
 	return false
 }
 
-
 type Fetcher interface {
 	// Fetch returns the body of URL and
 	// a slice of URLs found on that page.
@@ -55,7 +54,6 @@ func Crawl(url string, depth int, fetcher Fetcher) {
 		fmt.Printf("skip: \t%s\n", url)
 		return
 	}
-
 
 	body, urls, err := fetcher.Fetch(url)
 	if err != nil {

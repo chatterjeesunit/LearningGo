@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-// another example of synchronization using channels
+// using select with channels
 
 func main() {
 
@@ -14,25 +14,24 @@ func main() {
 
 	fmt.Println("Start of Program")
 
-	go printMessage("Hello World." , c)
-	go printMessage("Welcome to Go!" , c)
+	go printMessage("Hello World.", c)
+	go printMessage("Welcome to Go!", c)
+	go printMessage("Wow... channels are cool..", c)
 
-
-	for i:=0; i<2; i++ {
-		msg := <- c
+	for i := 0; i < 3; i++ {
+		msg := <-c
 		fmt.Println(msg)
 	}
 
 	fmt.Println("End of Program")
 
-	
 }
 
 func printMessage(message string, channel chan string) {
-	for i:=1; i <=5; i++{
+	for i := 1; i <= 5; i++ {
 		sleepTime := getRandomSleepTime()
 
-		fmt.Printf("%d. %s \t(now sleeping for %v)\n",i, message, sleepTime)
+		fmt.Printf("\t%d. %s \t(now sleeping for %v)\n", i, message, sleepTime)
 
 		time.Sleep(sleepTime)
 	}
@@ -42,7 +41,7 @@ func printMessage(message string, channel chan string) {
 
 func getRandomSleepTime() time.Duration {
 	rand.Seed(time.Now().UnixNano())
-	randomNumber := rand.Int63n(100)
+	randomNumber := rand.Intn(100)
 	sleepTime := time.Duration(randomNumber) * time.Millisecond
 
 	return sleepTime

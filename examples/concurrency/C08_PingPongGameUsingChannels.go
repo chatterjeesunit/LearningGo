@@ -30,25 +30,21 @@ Team 2 : Player 1
 9. After a game is finished, print the name of the team that has won the game.
 */
 
-
-var (
-
-
-)
+var ()
 
 const (
-	MAX_TIME_PER_PLAYER_TO_PLAY = time.Duration(200 * time.Millisecond)
-	MAX_RANDOM_SLEEP_TIME = 250
+	MAX_TIME_PER_PLAYER_TO_PLAY = time.Duration(500 * time.Millisecond)
+	MAX_RANDOM_SLEEP_TIME       = 750
 )
 
 type Player struct {
- 	name string
- 	canPlay chan bool
+	name    string
+	canPlay chan bool
 }
 
 type Team struct {
-	name string
-	players [2]Player
+	name               string
+	players            [2]Player
 	currentPlayerIndex int
 }
 
@@ -57,7 +53,6 @@ type Game struct {
 	finishGame       chan bool
 	currentTeamIndex int
 }
-
 
 func (game *Game) playNextRound() {
 
@@ -81,29 +76,23 @@ func (team *Team) play(game *Game) {
 	game.teams[game.currentTeamIndex] = *team
 }
 
-
 func (player *Player) play(game *Game) {
 	fmt.Printf("\t%s - Ready\n", player.name)
 	for {
-		<- player.canPlay
+		<-player.canPlay
 
 		sleepTime := fetchRandomSleepTime()
-		fmt.Printf("\t\t%s Playing : Time taken %v\n", player.name, sleepTime)
-
-		time.Sleep(sleepTime)
 
 		if sleepTime < MAX_TIME_PER_PLAYER_TO_PLAY {
+			fmt.Printf("\t\t%s \t: played in %v\n", player.name, sleepTime)
+			time.Sleep(sleepTime)
 			game.finishGame <- false
 		} else {
+			fmt.Printf("\t\t%s \t: took more than %v to play his shot, and hence their team lost the match.\n", player.name, MAX_TIME_PER_PLAYER_TO_PLAY)
 			game.finishGame <- true
 		}
 	}
 }
-
-
-
-
-
 
 func main() {
 	fmt.Println("Starting a new Game")
@@ -123,21 +112,18 @@ func main() {
 
 	fmt.Println("Game is finished....")
 
-	fmt.Printf("Team %s has WON", game.teams[game.currentTeamIndex].name)
+	fmt.Printf("Team %s has WON\n", game.teams[game.currentTeamIndex].name)
 
 }
-
-
-
 
 func startGame() Game {
 	player1 := Player{"John", make(chan bool, 1)}
 	player2 := Player{"Joe", make(chan bool, 1)}
-	player3 := Player{"Layla", make(chan bool, 1)}
+	player3 := Player{"Anna", make(chan bool, 1)}
 	player4 := Player{"Sara", make(chan bool, 1)}
 
 	team1 := Team{"Boys", [2]Player{player1, player2}, 0}
-	team2 := Team{"Girls", [2]Player{player3, player4},  0}
+	team2 := Team{"Girls", [2]Player{player3, player4}, 0}
 
 	game := Game{[2]Team{team1, team2}, make(chan bool, 1), 0}
 
@@ -151,15 +137,12 @@ func startGame() Game {
 	return game
 }
 
-
-
 func flipIndex(currentIndex int) int {
 	if currentIndex == 0 {
 		return 1
 	}
 	return 0
 }
-
 
 func fetchRandomSleepTime() time.Duration {
 	rand.Seed(time.Now().UnixNano())

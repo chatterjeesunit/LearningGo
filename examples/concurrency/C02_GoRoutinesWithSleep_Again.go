@@ -3,44 +3,32 @@ package main
 import (
 	"fmt"
 	"math/rand"
-	"sync"
 	"time"
 )
 
-// The main go routines will now wait for other go routines to finish.. using sync.waitGroup
-
-
-var (
-	wg sync.WaitGroup
-)
-
+// Why making the main function to sleep and wait for go routines to finish is a bad idea
 
 func main() {
 
 	fmt.Println("Start of Program")
 
-	wg.Add(2)
 	go printMessage("Hello World.")
 	go printMessage("Welcome to Go!")
 
-	wg.Wait()
+	time.Sleep(50 * time.Millisecond)
 
 	fmt.Println("End of Program")
 
-	
 }
 
 func printMessage(message string) {
-	defer wg.Done()
-
-	for i:=1; i <=5; i++{
+	for i := 1; i <= 5; i++ {
 		sleepTime := getRandomSleepTime()
 
-		fmt.Printf("%d. %s \t(now sleeping for %v)\n",i, message, sleepTime)
+		fmt.Printf("%d. %s \t(now sleeping for %v)\n", i, message, sleepTime)
 
 		time.Sleep(sleepTime)
 	}
-
 }
 
 func getRandomSleepTime() time.Duration {

@@ -6,13 +6,11 @@ import (
 	"time"
 )
 
-
 // We have a initial number set to value 100
 
 // Now we run a loop 10000 times, and call two go routines...
 // One go routine increments the value
 // Other go routine decrements the value
-
 
 // This leads to a race condition since both increment and decrement go routine are trying to read and write to
 // the same shared variable "num"
@@ -24,13 +22,11 @@ import (
 // After the program completes, the expected value is 100 (the original value),
 // but everytime the actual value will be different
 
-
 const (
 	MAX = 100000
 )
 
 func main() {
-
 
 	num := 100
 
@@ -40,14 +36,12 @@ func main() {
 
 	startTime := time.Now()
 
-	for i:=0; i<MAX; i++ {
-
+	for i := 0; i < MAX; i++ {
 
 		go func() {
 			increment(&num, 1)
 			wg.Done()
 		}()
-
 
 		go func() {
 			increment(&num, -1)
@@ -60,11 +54,7 @@ func main() {
 	fmt.Println("Total time taken : ", time.Since(startTime))
 	fmt.Println("Expected value = 100, Actual Value = ", num)
 
-
-
-
 }
-
 
 func increment(number *int, delta int) {
 	time.Sleep(time.Microsecond * 1)

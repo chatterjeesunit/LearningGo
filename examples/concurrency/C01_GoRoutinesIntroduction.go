@@ -15,7 +15,6 @@ func main() {
 	fmt.Println("End of Program")
 }
 
-
 func printMessage(message string) {
 	fmt.Println(message)
 }

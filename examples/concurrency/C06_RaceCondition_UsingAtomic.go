@@ -7,11 +7,9 @@ import (
 	"time"
 )
 
-
 /*
 Race condition fixed using Mutex
- */
-
+*/
 
 const (
 	MAX = 100000
@@ -30,14 +28,12 @@ func main() {
 	wg.Add(2 * MAX)
 
 	startTime := time.Now()
-	for i:=0; i<MAX; i++ {
-
+	for i := 0; i < MAX; i++ {
 
 		go func() {
 			increment(&num, 1)
 			wg.Done()
 		}()
-
 
 		go func() {
 			increment(&num, -1)
@@ -53,11 +49,7 @@ func main() {
 
 }
 
-
 func increment(number *int64, delta int64) {
 	time.Sleep(time.Microsecond * 1)
 	atomic.AddInt64(number, delta)
 }
-
-
-

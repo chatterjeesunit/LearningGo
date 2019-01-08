@@ -6,10 +6,9 @@ import (
 	"time"
 )
 
-
 /*
 Race condition fixed using Mutex
- */
+*/
 
 type SafeNum struct {
 	sync.Mutex
@@ -28,10 +27,7 @@ const (
 	MAX = 100000
 )
 
-
 func main() {
-
-
 
 	safeNumber := SafeNum{num: 100}
 
@@ -40,14 +36,12 @@ func main() {
 	wg.Add(2 * MAX)
 
 	startTime := time.Now()
-	for i:=0; i<MAX; i++ {
-
+	for i := 0; i < MAX; i++ {
 
 		go func() {
 			safeNumber.increment(1)
 			wg.Done()
 		}()
-
 
 		go func() {
 			safeNumber.increment(-1)
@@ -62,6 +56,3 @@ func main() {
 	fmt.Println("Expected value = 100, Actual Value = ", safeNumber.num)
 
 }
-
-
-

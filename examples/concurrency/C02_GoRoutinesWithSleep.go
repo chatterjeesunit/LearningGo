@@ -11,18 +11,17 @@ func main() {
 
 	fmt.Println("Start of Program")
 
-	go PrintAMessage("Hello World..")
+	go printMessage("Hello World..")
 
-	go PrintAMessage("Welcome to Go!")
+	go printMessage("Welcome to Go!")
 
 	//force the main function to wait
-	time.Sleep(time.Second * 1)
+	time.Sleep(time.Millisecond * 100)
 
 	fmt.Println("End of Program")
 
 }
 
-
-func PrintAMessage(message string) {
+func printMessage(message string) {
 	fmt.Println(message)
 }

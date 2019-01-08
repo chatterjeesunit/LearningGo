@@ -47,8 +47,8 @@ func Same(t1, t2 *tree.Tree) bool {
 	close(ch2)
 
 	for {
-		x, xOk := <- ch1
-		y, yOK := <- ch2
+		x, xOk := <-ch1
+		y, yOK := <-ch2
 
 		if xOk == yOK && x == y {
 
@@ -71,6 +71,5 @@ func main() {
 
 	fmt.Printf("T1 == T1 : %t\n", Same(t1, t1))
 	fmt.Printf("T2 == T1 : %t\n", Same(t2, t1))
-
 
 }
